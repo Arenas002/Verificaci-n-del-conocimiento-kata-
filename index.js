@@ -1,4 +1,12 @@
 
+
+/**
+ * Codigo principal que hace uso de la clase modelo(selectDOM) para crear elementos
+ * @author Cristian Arenas Gomez
+ * @version 1.0.0
+ */
+
+// se inician las variables
 const d = document,
 $table = d.querySelector(".crud-table"),
 $form = d.querySelector(".crud-form"),
@@ -14,6 +22,9 @@ const getAll= async ()=>{
 
         if (!res.ok) throw { status: res.status, statusText: res.statusText };
 
+        /**
+         * se recorre el arreglo y se setea el valor al elemento del DOM
+         */
         console.log(json);
         json.forEach(el =>{
             $template.querySelector(".name").textContent = el.nombre;
@@ -28,6 +39,7 @@ const getAll= async ()=>{
         })
         $table.querySelector("tbody").appendChild($fragment);
     }catch(err){
+      //mensaje de error 
         let message = err.statusText ||"no esta funcionando";
         $table.insertAdjacentHTML("afterend", `<p><b>Error ${err.status}: ${message}</b></p>`);
     }
@@ -35,12 +47,15 @@ const getAll= async ()=>{
 
 
 d.addEventListener("DOMContentLoaded", getAll);
+/**
+ * funcion que crea y actualiza los personajes
+ */
 d.addEventListener("submit",async e =>{
     if (e.target === $form) {
         e.preventDefault();
 
     if(!e.target.id.value){
-        //crear 
+        //peticion para crear un personaje 
         try{
         let options ={
             method:"POST",
@@ -64,7 +79,7 @@ d.addEventListener("submit",async e =>{
             $form.insertAdjacentHTML("afterend", `<p><b>Error ${err.status}: ${message}</b></p>`);
     }
     }else{
-        //actualizacion
+        //peticio para actualizacion un personaje
         try {
             let options = {
               method: "PUT",
@@ -89,7 +104,9 @@ d.addEventListener("submit",async e =>{
     }
 }
 });
-
+/**
+ * funcion asincrona donde se edita y elimina el personaje
+ */
 d.addEventListener("click", async e => {
     if (e.target.matches(".edit")) {
     //   $title.textContent = "Editar Santo";
@@ -101,7 +118,7 @@ d.addEventListener("click", async e => {
         let isDelete = confirm(`¿Estás seguro de eliminar el id ${e.target.dataset.id}?`);
 
         if (isDelete) {
-          //Delete - DELETE
+          //peticion para borrar los personajes
           try {
             let options = {
               method: "DELETE",

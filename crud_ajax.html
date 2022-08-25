@@ -4,35 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>CRUD API REST AJAX</title>
 </head>
 <body>
-    <h1>CRUD API REST AJAX</h1>
+    <div class="container">
+    <h1>LOS SIMPSON</h1>
     <section class = "crud"> 
         <article>
-            <h2 class="crud-tiltle">Agregar santos</h2>
+            <h2 class="crud-tiltle">Agregar personajes</h2>
+            <div class="cont-form">
             <form class="crud-form">
-                <input type="text" name = "nombre" placeholder="Ingrese nombre" required>
+                <input  class = "nombre1" type="text" name = "nombre" placeholder="Ingrese nombre" required>
                 <br>
-                <input type="text" name = "constelacion" placeholder="constelacion" required>
+                <input class = "constelacion1" type="text" name = "constelacion" placeholder="constelacion" required>
                 <br>
-                <input type="submit" value="Enviar">
+                <input  class = "enviar1" type="submit" value="Enviar">
                 <input type="hidden" name = "id">
             </form>
+        </div>
         </article>
+        <div class="container-crud">
         <article>
-            <h2>Ver santos</h2>
+            <br>
+           
             <table class="crud-table">
                 <thead>
                     <tr>
                         <th>nombre</th>
-                        <th>constelaciones</th>
+                        <th>Apellidos</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
             </table>
         </article>
+    </div>
     </section>
     <template id ="crud-template">
         <tr>
@@ -45,5 +52,6 @@
            </tr> 
     </template>
     <script type="module" src="index.js"></script>
+</div>
 </body>
 </html>
